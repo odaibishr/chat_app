@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                       'assets/images/scholar.png',
                       height: 100,
                     ),
-                   const Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
