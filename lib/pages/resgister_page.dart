@@ -28,7 +28,7 @@ class RegisterPage extends StatelessWidget {
         if (state is RegisterLoading) {
           isLoading = true;
         } else if (state is RegisterSuccess) {
-          Navigator.pushNamed(context, ChatPage.id);
+          Navigator.pushNamed(context, ChatPage.id, arguments: email);
           isLoading = false;
         } else if (state is RegisterFailure) {
           showSnackBar(context, state.errorMessage);
