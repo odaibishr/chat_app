@@ -1,16 +1,35 @@
-# chat_app
+# Scholar Chat (Flutter + Firebase)
 
-A new Flutter project.
+A simple, modern chat application built with Flutter and Firebase. Users can register, log in, and exchange messages in real time. The app uses BLoC for state management and supports Android, iOS.
+
+## Features
+- User authentication with email/password (Firebase Auth)
+- Real-time messaging (Cloud Firestore)
+- Reactive state management with BLoC (flutter_bloc)
+- Clean UI with custom widgets
+- Loading and error handling UX
+
+## Tech Stack
+- Flutter
+- Firebase Core, Auth, Cloud Firestore
+- BLoC (bloc, flutter_bloc)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
+- Flutter SDK installed
+- A Firebase project (Android/iOS/Web)
+- Dart SDK compatible with `sdk: ">=2.15.1 <3.0.0"`
 
-A few resources to get you started if this is your first Flutter project:
+### Setup
+1. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+2. Configure Firebase:  
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Run the app:
+   ```bash
+   flutter run
+   ```
