@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scholar_chat/constants.dart';
 import 'package:scholar_chat/models/message.dart';
-import 'package:scholar_chat/pages/cubits/chat_cubit/chat_cubit.dart';
+import 'package:scholar_chat/features/chat/cubit/chat_cubit/chat_cubit.dart';
 import 'package:scholar_chat/widgets/chat_buble.dart';
 
 class ChatPage extends StatelessWidget {

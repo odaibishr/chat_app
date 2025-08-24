@@ -2,33 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:scholar_chat/constants.dart';
+import 'package:scholar_chat/features/auth/bloc/auth_bloc/auth_bloc.dart';
 import 'package:scholar_chat/helper/show_snack_bar.dart';
-import 'package:scholar_chat/pages/cubits/login_cubit/login_cubit.dart';
-import 'package:scholar_chat/pages/resgister_page.dart';
+import 'package:scholar_chat/features/chat/pages/chat_page.dart';
 import 'package:scholar_chat/widgets/custom_button.dart';
 import 'package:scholar_chat/widgets/custom_text_field.dart';
 
-import 'chat_page.dart';
+class RegisterPage extends StatelessWidget {
+  RegisterPage({Key? key}) : super(key: key);
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+  static String id = 'RegisterPage';
+
+  String? email;
+
+  String? password;
 
   bool isLoading = false;
-  static String id = 'login page';
 
   GlobalKey<FormState> formKey = GlobalKey();
 
-  String? email, password;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<LoginCubit, LoginState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is LoginLoading) {
+        if (state is RegisterLoading) {
           isLoading = true;
-        } else if (state is LoginSuccess) {
+        } else if (state is RegisterSuccess) {
           Navigator.pushNamed(context, ChatPage.id, arguments: email);
           isLoading = false;
-        } else if (state is LoginFailure) {
+        } else if (state is RegisterFailure) {
           showSnackBar(context, state.errorMessage);
           isLoading = false;
         }
@@ -70,7 +72,7 @@ class LoginPage extends StatelessWidget {
                     const Row(
                       children: [
                         Text(
-                          'LOGIN',
+                          'REGISTER',
                           style: TextStyle(
                             fontSize: 24,
                             color: Colors.white,
@@ -91,7 +93,6 @@ class LoginPage extends StatelessWidget {
                       height: 10,
                     ),
                     CustomFormTextField(
-                      obscureText: true,
                       onChanged: (data) {
                         password = data;
                       },
@@ -103,11 +104,12 @@ class LoginPage extends StatelessWidget {
                     CustomButon(
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<LoginCubit>(context)
-                              .loginUser(email: email!, password: password!);
+                          BlocProvider.of<AuthBloc>(context).add(
+                              AuthEventRegister(
+                                  email: email!, password: password!));
                         } else {}
                       },
-                      text: 'LOGIN',
+                      text: 'REGISTER',
                     ),
                     const SizedBox(
                       height: 10,
@@ -116,17 +118,17 @@ class LoginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text(
-                          'dont\'t have an account?',
+                          'already have an account?',
                           style: TextStyle(
                             color: Colors.white,
                           ),
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(context, RegisterPage.id);
+                            Navigator.pop(context);
                           },
                           child: const Text(
-                            '  Register',
+                            '  Login',
                             style: TextStyle(
                               color: Color(0xffC7EDE6),
                             ),
